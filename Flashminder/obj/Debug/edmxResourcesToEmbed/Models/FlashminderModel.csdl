@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="flashminderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Privilege" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="flashminderModel.FK__Category__UserId__61F08603" FromRole="USERS" ToRole="Category" />
+    <NavigationProperty Name="Flashcard_Category" Relationship="flashminderModel.FK__Flashcard__UserI__78D3EB5B" FromRole="USERS" ToRole="Flashcard_Category" />
+    <NavigationProperty Name="Flashcards" Relationship="flashminderModel.FK__Flashcard__UserI__3C89F72A" FromRole="USERS" ToRole="Flashcard" />
+  </EntityType>
+  <EntityContainer Name="DefaultConnection" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USERS" EntityType="flashminderModel.USERS" />
+    <EntitySet Name="CardTypes" EntityType="flashminderModel.CardType" />
+    <EntitySet Name="Categories" EntityType="flashminderModel.Category" />
+    <AssociationSet Name="FK__Category__UserId__61F08603" Association="flashminderModel.FK__Category__UserId__61F08603">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <EntitySet Name="Flashcard_Category" EntityType="flashminderModel.Flashcard_Category" />
+    <AssociationSet Name="FK__Flashcard__Categ__79C80F94" Association="flashminderModel.FK__Flashcard__Categ__79C80F94">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Flashcard_Category" EntitySet="Flashcard_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Flashcard__UserI__78D3EB5B" Association="flashminderModel.FK__Flashcard__UserI__78D3EB5B">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="Flashcard_Category" EntitySet="Flashcard_Category" />
+    </AssociationSet>
+    <EntitySet Name="Flashcards" EntityType="flashminderModel.Flashcard" />
+    <AssociationSet Name="FK__Flashcard__fk_Ca__3B95D2F1" Association="flashminderModel.FK__Flashcard__fk_Ca__3B95D2F1">
+      <End Role="CardType" EntitySet="CardTypes" />
+      <End Role="Flashcard" EntitySet="Flashcards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Flashcard__Flash__46136164" Association="flashminderModel.FK__Flashcard__Flash__46136164">
+      <End Role="Flashcard" EntitySet="Flashcards" />
+      <End Role="Flashcard_Category" EntitySet="Flashcard_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Flashcard__UserI__3C89F72A" Association="flashminderModel.FK__Flashcard__UserI__3C89F72A">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="Flashcard" EntitySet="Flashcards" />
+    </AssociationSet>
+    <EntitySet Name="Flashcard_Algorithm_Data" EntityType="flashminderModel.Flashcard_Algorithm_Data" />
+    <AssociationSet Name="FK__Flashcard__Flash__257187A8" Association="flashminderModel.FK__Flashcard__Flash__257187A8">
+      <End Role="Flashcard" EntitySet="Flashcards" />
+      <End Role="Flashcard_Algorithm_Data" EntitySet="Flashcard_Algorithm_Data" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CardType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Flashcards" Relationship="flashminderModel.FK__Flashcard__fk_Ca__3B95D2F1" FromRole="CardType" ToRole="Flashcard" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="USER" Relationship="flashminderModel.FK__Category__UserId__61F08603" FromRole="Category" ToRole="USERS" />
+    <NavigationProperty Name="Flashcard_Category" Relationship="flashminderModel.FK__Flashcard__Categ__79C80F94" FromRole="Category" ToRole="Flashcard_Category" />
+  </EntityType>
+  <Association Name="FK__Category__UserId__61F08603">
+    <End Type="flashminderModel.USERS" Role="USERS" Multiplicity="0..1" />
+    <End Type="flashminderModel.Category" Role="Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Flashcard_Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="FlashcardId" />
+    </Key>
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="FlashcardId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="flashminderModel.FK__Flashcard__Categ__79C80F94" FromRole="Flashcard_Category" ToRole="Category" />
+    <NavigationProperty Name="USER" Relationship="flashminderModel.FK__Flashcard__UserI__78D3EB5B" FromRole="Flashcard_Category" ToRole="USERS" />
+    <NavigationProperty Name="Flashcard" Relationship="flashminderModel.FK__Flashcard__Flash__46136164" FromRole="Flashcard_Category" ToRole="Flashcard" />
+  </EntityType>
+  <Association Name="FK__Flashcard__Categ__79C80F94">
+    <End Type="flashminderModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="flashminderModel.Flashcard_Category" Role="Flashcard_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flashcard_Category">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Flashcard__UserI__78D3EB5B">
+    <End Type="flashminderModel.USERS" Role="USERS" Multiplicity="0..1" />
+    <End Type="flashminderModel.Flashcard_Category" Role="Flashcard_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flashcard_Category">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Flashcard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FrontText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BackText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FrontImage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BackImage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fk_CardType" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CardType" Relationship="flashminderModel.FK__Flashcard__fk_Ca__3B95D2F1" FromRole="Flashcard" ToRole="CardType" />
+    <NavigationProperty Name="Flashcard_Category" Relationship="flashminderModel.FK__Flashcard__Flash__46136164" FromRole="Flashcard" ToRole="Flashcard_Category" />
+    <NavigationProperty Name="USER" Relationship="flashminderModel.FK__Flashcard__UserI__3C89F72A" FromRole="Flashcard" ToRole="USERS" />
+    <NavigationProperty Name="Flashcard_Algorithm_Data" Relationship="flashminderModel.FK__Flashcard__Flash__257187A8" FromRole="Flashcard" ToRole="Flashcard_Algorithm_Data" />
+  </EntityType>
+  <Association Name="FK__Flashcard__fk_Ca__3B95D2F1">
+    <End Type="flashminderModel.CardType" Role="CardType" Multiplicity="1" />
+    <End Type="flashminderModel.Flashcard" Role="Flashcard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CardType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flashcard">
+        <PropertyRef Name="fk_CardType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Flashcard__Flash__46136164">
+    <End Type="flashminderModel.Flashcard" Role="Flashcard" Multiplicity="1" />
+    <End Type="flashminderModel.Flashcard_Category" Role="Flashcard_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flashcard">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flashcard_Category">
+        <PropertyRef Name="FlashcardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Flashcard__UserI__3C89F72A">
+    <End Type="flashminderModel.USERS" Role="USERS" Multiplicity="0..1" />
+    <End Type="flashminderModel.Flashcard" Role="Flashcard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flashcard">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Flashcard_Algorithm_Data">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlashcardId" Type="Int32" />
+    <Property Name="Easiness" Type="Double" />
+    <Property Name="Interval" Type="Int32" />
+    <Property Name="Quality" Type="Byte" />
+    <Property Name="NextPratice" Type="DateTime" Precision="3" />
+    <Property Name="Repetitions" Type="Int32" />
+    <NavigationProperty Name="Flashcard" Relationship="flashminderModel.FK__Flashcard__Flash__257187A8" FromRole="Flashcard_Algorithm_Data" ToRole="Flashcard" />
+  </EntityType>
+  <Association Name="FK__Flashcard__Flash__257187A8">
+    <End Type="flashminderModel.Flashcard" Role="Flashcard" Multiplicity="0..1" />
+    <End Type="flashminderModel.Flashcard_Algorithm_Data" Role="Flashcard_Algorithm_Data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flashcard">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flashcard_Algorithm_Data">
+        <PropertyRef Name="FlashcardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

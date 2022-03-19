@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="flashminderModelStoreContainer" CdmEntityContainer="DefaultConnection">
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="flashminderModel.USERS">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Privilege" ColumnName="Privilege" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CardTypes">
+      <EntityTypeMapping TypeName="flashminderModel.CardType">
+        <MappingFragment StoreEntitySet="CardType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="flashminderModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CategoryDesc" ColumnName="CategoryDesc" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flashcard_Category">
+      <EntityTypeMapping TypeName="flashminderModel.Flashcard_Category">
+        <MappingFragment StoreEntitySet="Flashcard_Category">
+          <ScalarProperty Name="FlashcardId" ColumnName="FlashcardId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flashcards">
+      <EntityTypeMapping TypeName="flashminderModel.Flashcard">
+        <MappingFragment StoreEntitySet="Flashcard">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="fk_CardType" ColumnName="fk_CardType" />
+          <ScalarProperty Name="BackImage" ColumnName="BackImage" />
+          <ScalarProperty Name="FrontImage" ColumnName="FrontImage" />
+          <ScalarProperty Name="BackText" ColumnName="BackText" />
+          <ScalarProperty Name="FrontText" ColumnName="FrontText" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flashcard_Algorithm_Data">
+      <EntityTypeMapping TypeName="flashminderModel.Flashcard_Algorithm_Data">
+        <MappingFragment StoreEntitySet="Flashcard_Algorithm_Data">
+          <ScalarProperty Name="Repetitions" ColumnName="Repetitions" />
+          <ScalarProperty Name="NextPratice" ColumnName="NextPratice" />
+          <ScalarProperty Name="Quality" ColumnName="Quality" />
+          <ScalarProperty Name="Interval" ColumnName="Interval" />
+          <ScalarProperty Name="Easiness" ColumnName="Easiness" />
+          <ScalarProperty Name="FlashcardId" ColumnName="FlashcardId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.FlashminderModel.csdl|res://*/Models.FlashminderModel.ssdl|res://*/Models.FlashminderModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data Source=tcp:flashminder.database.windows.net,1433;Initial Catalog=flashminder;User ID=flashminder;Password=test123@@;MultipleActiveResultSets=False;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\SEProject\ LIVE\\Flashminder\\Flashminder\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

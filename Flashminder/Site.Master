@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="Flashminder.Site" %>
+<%@ Register Src="~/Custom_User_Controls/Navbar.ascx" TagName="Navbar" TagPrefix="cusnav" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+
+    <!-- CSS Section -->
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/app.css" rel="stylesheet" />
+    
+    <asp:ContentPlaceHolder ID="head" runat="server"> 
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- This section is for custom navbar. -->
+        <cusnav:Navbar runat="server"></cusnav:Navbar>         
+        <div>
+            <!-- This section is a placeholder for each page content -->
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <!-- This section is for custom footer -->
+        <footer class="footer">
+            <div class="container text-center">
+                <h5 class="text-muted">&copy; All Rights Reserved - Flashminder Team</h5>
+                <h6 class="text-muted">SFWRTECH 4FD3 2022 Winter</h6>
+            </div>
+        </footer>
+    </form>
+
+    <!-- JavaScript Section -->
+    <script src="Scripts/jquery-2.2.3.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/app.js"></script>
+</body>
+</html>
